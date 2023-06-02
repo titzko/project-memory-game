@@ -1,42 +1,21 @@
-import { useState } from "react";
 
 
-export default function Card({ name }) {
-
-    const [counter, setCounter] = useState(0);
-    const [pokemons, setPokemons] = useState([]);
-    const Pokedex = require("pokeapi-js-wrapper")
-    const P = new Pokedex.Pokedex()
-
-    function increaseCount() {
-        setCounter(counter + 1)
-    }
-
-
-    async function addPokemon() {
-        const golduck = await P.getPokemonByName("golduck");
-        setPokemons([...pokemons,golduck])
-    }
-
-
-
+export default function Card({name}) {
 
 
     return (
-        <div>
-            <div>hello from my card with the name {name}</div>
-            <button onClick={increaseCount} >Count {counter}</button>
-            <button onClick={addPokemon}>Get Pokemon</button>
+        <div className="col-3 mt-3">
+                <div className="card text-white bg-dark">
+                    <div className="card-body">
+                        <h5 className="card-title">{name}</h5>
+                        <img
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/365.png"
+                            alt="Some picture"
+                            style={{ width: "100px", height: "100px" }}
 
-            {pokemons.map((pokemon,index) => 
-                <div key={index}>
-                    <div>{pokemon.name}</div>
-                    <img
-                        src={pokemon.sprites["back_default"]}
-                        alt={'Photo of ' + pokemon.name}
-                    />
+                        />
+                    </div>
                 </div>
-            )}
-        </div>
+            </div>
     )
 }

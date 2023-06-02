@@ -1,11 +1,14 @@
 import './App.css';
-import Card from './components/Card';
+import Level from './components/Level';
 
 function App() {
   return (
-    <div className="App">
-      <div>Hello World</div>
-      <Card name={'Matthias'} />
+    <div>
+      <Level />
+
+
+      {/* <Card name={'Matthias'} /> */}
+
     </div>
   );
 }
