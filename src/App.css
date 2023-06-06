@@ -1,0 +1,18 @@
+#root {
+    background-color: slategrey;
+    height: 100vh;
+}
+
+.card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.card:active {
+    transform: scale(0.95);
+}

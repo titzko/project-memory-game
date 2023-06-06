@@ -5,10 +5,6 @@ function App() {
   return (
     <div>
       <Level />
-
-
-      {/* <Card name={'Matthias'} /> */}
-
     </div>
   );
 }
