@@ -1,25 +1,32 @@
-import { useEffect } from "react"
-import { useState } from "react";
+import { useEffect, useState } from "react"
 
 import Card from "./Card"
-import {shuffle} from "../utils";
+import { shuffle, getRandomInt } from "../utils";
 
-export default function Level() {
+const Pokedex = require("pokeapi-js-wrapper");
+const P = new Pokedex.Pokedex();
 
-    const LEVEL_SIZE = 5;
+export default function Level({ size, increaseStore, looseHandling, increaseDifficulty }) {
+
     const [pokemonNames, setPokemonNames] = useState([]);
     const [remainingPokemon, setRemainingPokemon] = useState([]);
-    const [version, setVersion] = useState(0); // new state
+    const [version, setVersion] = useState(0);
+
+
+    // check for level up
+    useEffect(() => {
+        if (remainingPokemon.length === 0 && pokemonNames.length > 0) {
+            increaseDifficulty();
+        }
+    }, [remainingPokemon]);
 
 
     useEffect(() => {
         async function getAllPokemenons() {
             const result = [];
-            const Pokedex = require("pokeapi-js-wrapper");
-            const P = new Pokedex.Pokedex();
             const pokemons = await P.getPokemonsList();
 
-            for (let i = 0; i < LEVEL_SIZE; i++) {
+            for (let i = 0; i < size; i++) {
                 result.push(pokemons.results[getRandomInt(500)].name);
             }
             return result;
@@ -34,36 +41,36 @@ export default function Level() {
     }, []);
 
 
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
+
+    function handleCardClick(name) {
+        !remainingPokemon.includes(name)
+            ? handleLoose()
+            : handleCorrectTurn(name);
     }
 
 
 
-    function handleCardClick(name) {
-        !remainingPokemon.includes(name) 
-        ? handleLoose()
-        : setRemainingPokemon(remainingPokemon.filter((element) => element !== name))
-
+    function handleCorrectTurn(name) {
+        setRemainingPokemon(remainingPokemon.filter((element) => element !== name))
+        increaseStore();
         setPokemonNames([...shuffle(pokemonNames)])
-        setVersion(version + 1); // increment version to force a re-render
+        setVersion(version + 1);
     }
 
 
     function handleLoose() {
+        looseHandling();
         setRemainingPokemon([...pokemonNames])
-        alert("YOU LOST");
     }
 
 
     return (
         <div className="row" style={{ "width": "75%", "margin": "auto" }} key={version}>
             {pokemonNames.map((name, index) =>
-            <div className="col-3 mt-3" key={index}>
-                <Card name={name} onCardClick={() => handleCardClick(name)} />
-            </div>
+                <div className="col-3 mt-3" key={index}>
+                    <Card name={name} onCardClick={() => handleCardClick(name)} />
+                </div>
             )}
-
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import './App.css';
-import Level from './components/Level';
+import Game from './components/Game';
 
 function App() {
   return (
     <div>
-      <Level />
+      <Game />
     </div>
   );
 }

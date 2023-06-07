@@ -17,4 +17,8 @@ function shuffle(array) {
 
 
 
-  export {shuffle}
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+  export {shuffle, getRandomInt}
