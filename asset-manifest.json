@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/project-memory-card/static/css/main.8e36f73d.css",
+    "main.js": "/project-memory-card/static/js/main.78ad4f2e.js",
+    "static/js/787.ce6dfba3.chunk.js": "/project-memory-card/static/js/787.ce6dfba3.chunk.js",
+    "index.html": "/project-memory-card/index.html",
+    "main.8e36f73d.css.map": "/project-memory-card/static/css/main.8e36f73d.css.map",
+    "main.78ad4f2e.js.map": "/project-memory-card/static/js/main.78ad4f2e.js.map",
+    "787.ce6dfba3.chunk.js.map": "/project-memory-card/static/js/787.ce6dfba3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8e36f73d.css",
+    "static/js/main.78ad4f2e.js"
+  ]
+}
