@@ -14,7 +14,6 @@ export default function Card({ name, onCardClick }) {
         }
 
         getPokemonByName().then(p => {
-            console.log(p);
             setPokemon(p);
             setTimeout(() => {
                 setIsLoading(false);
