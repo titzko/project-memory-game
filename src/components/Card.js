@@ -14,8 +14,9 @@ export default function Card({ name, onCardClick }) {
         }
 
         getPokemonByName().then(p => {
+            console.log(p);
             setPokemon(p);
-            setTimeout(()=> {
+            setTimeout(() => {
                 setIsLoading(false);
             }, 400)
         });
@@ -23,26 +24,26 @@ export default function Card({ name, onCardClick }) {
     }, []);
 
     return (
-        <div className="card text-white bg-dark" onClick={onCardClick} style={{ "height": "200px" }}>
+        <div className="card text-white bg-dark" onClick={onCardClick} style={{ "height": "250px" }}>
             <h5 className="card-title d-flex justify-content-center mt-3">{pokemon.name}</h5>
-            {isLoading ? (
-                <div className='d-flex justify-content-center align-items-center h-100'>
+            <div className='d-flex justify-content-center align-items-center h-100'>
+                {isLoading ? (
                     <BallTriangle
                         color="#00BFFF"
                         height={50}
                         width={50}
                         timeout={3000}
                     />
-                </div>
-            ) : (
-                pokemon.sprites && (
-                    <img
-                        src={pokemon.sprites.back_default}
-                        alt="pokemon sprite"
-                        style={{ width: "150px", height: "150px" }}
-                    />
-                )
-            )}
+                ) : (
+                    pokemon.sprites && (
+                        <img
+                            src={pokemon.sprites.other.dream_world.front_default}
+                            alt="pokemon sprite"
+                            style={{ width: "150px", height: "150px" }}
+                        />
+                    )
+                )}
+            </div>
         </div>
     );
 }
