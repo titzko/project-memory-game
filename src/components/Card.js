@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
 
+const Pokedex = require('pokeapi-js-wrapper');
+const P = new Pokedex.Pokedex();
+
 export default function Card({ name, onCardClick }) {
     const [pokemon, setPokemon] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const Pokedex = require('pokeapi-js-wrapper');
-        const P = new Pokedex.Pokedex();
-
         async function getPokemonByName() {
             return await P.getPokemonByName(name);
         }
