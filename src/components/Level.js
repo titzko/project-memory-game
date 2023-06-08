@@ -25,8 +25,9 @@ export default function Level({ size, increaseStore, looseHandling, increaseDiff
         async function getAllPokemenons() {
             const result = [];
             const pokemons = await P.getPokemonsList();
-
+    
             for (let i = 0; i < size; i++) {
+                // 500 since im not getting images for every pokemon (1281 is the size of the pokemons.results - array)
                 result.push(pokemons.results[getRandomInt(500)].name);
             }
             return result;
